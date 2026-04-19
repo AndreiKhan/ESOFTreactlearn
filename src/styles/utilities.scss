@@ -1,0 +1,27 @@
+.primary-button {
+  background-color: var(--primary-button-color);
+  color: var(--white-text);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  padding: 7px 12px 9px;
+  border-radius: 10px;
+}
+
+.primary-input {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  padding: 11.5px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  &::placeholder {
+    color: var(--primary-text-color-50);
+  }
+  &:focus {
+    outline: none;
+  }
+}

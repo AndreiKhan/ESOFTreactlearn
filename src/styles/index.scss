@@ -1,0 +1,60 @@
+@use '@/styles/fonts';
+@use '@/styles/utilities';
+
+:root {
+  --max-content-width: 1440px;
+  --desktop-padding: 32px;
+  --tablet-padding: 24px;
+  --mobile-padding: 16px;
+
+  --white-text: #FFFFFF;
+  --white-background: #FFFFFF;
+  --white-background-90: #FFFFFFE5;
+  --text-color: #717182;
+  --primary-text-color: #0A0A0A;
+  --primary-text-color-50: #0A0A0A80;
+  --border-color: #0000001A;
+  --primary-button-color: #030213;
+  --button-color: #ECEEF2;
+  --background-color: #F3F3F5;
+  --offer-red-color: #D4183D;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
