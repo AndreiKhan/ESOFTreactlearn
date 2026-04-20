@@ -79,13 +79,22 @@
   }
   &__slide-numbers {
     position: absolute;
-    bottom: 5px;
-    left: 5px;
-    padding: 2px 4px;
-    border-radius: 5px;
+    bottom: 8px;
+    left: 50%;
+    display: flex;
+    gap: 6px;
+    transform: translateX(-50%);
+  }
+  &__slide {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
     background-color: var(--white-background-90);
-    font-size: 12px;
-    color: var(--primary-text-color);
+  }
+  &__slide--active {
+    width: 16px;
+    border-radius: 50px;
+    background-color: var(--primary-button-color);
   }
   &__content {
     display: flex;

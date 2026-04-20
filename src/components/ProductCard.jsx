@@ -47,29 +47,58 @@ function AddToCart() {
   )
 }
 
-function ProductCard({card}) {
+function Carousel({ images, slide, onPrev, onNext }) {
+  return (
+    <>
+      <div className='product-card__slide-numbers'>
+        {images.map((image, index) => (
+          <div
+            key={image}
+            className={`product-card__slide ${index === slide ? 'product-card__slide--active' : ''}`}
+          />
+        ))}
+      </div>
+      <button
+        className='product-card__slide-button'
+        type='button'
+        onClick={onPrev}
+      >
+        <img className='product-card__arrow' src={arrow} alt="arrow" />
+      </button>
+      <button
+        className='product-card__slide-button'
+        type='button'
+        onClick={onNext}
+      >
+        <img className='product-card__arrow' src={arrow} alt="arrow" />
+      </button>
+    </>
+  )
+}
+
+function ProductCard({product}) {
   const [isFavorite, setIsFavorite] = useState(false)
-  const [index, setIndex] = useState(0)
+  const [slide, setSlide] = useState(0)
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite)
   }
 
-  const images = card.images ?? []
+  const images = product.images ?? []
 
   const previousImage = () => {
-    setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+    setSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))
   }
   const nextImage = () => {
-    setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+    setSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1))
   }
 
   return (
     <div className='product-card'>
       <div className='product-card__preview'
-        style={{ backgroundImage: `url(${images[index]})` }}
+        style={{ backgroundImage: `url(${images[slide]})` }}
       >
-        {card.isSpecialOffer && (
+        {product.isSpecialOffer && (
           <p className='product-card__special-offer'>Special Offer</p>
         )}
         <button 
@@ -81,36 +110,23 @@ function ProductCard({card}) {
             <path d="M12 8C12.9933 7.02667 14 5.86 14 4.33333C14 3.36087 13.6137 2.42824 12.926 1.74061C12.2384 1.05297 11.3058 0.666666 10.3333 0.666666C9.15996 0.666666 8.33329 0.999999 7.33329 2C6.33329 0.999999 5.50663 0.666666 4.33329 0.666666C3.36083 0.666666 2.4282 1.05297 1.74057 1.74061C1.05293 2.42824 0.666626 3.36087 0.666626 4.33333C0.666626 5.86667 1.66663 7.03333 2.66663 8L7.33329 12.6667L12 8Z" stroke="#0A0A0A" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
-        {card.images.length >= 2 && (
-          <>
-            <div className='product-card__slide-numbers'>
-              {index + 1}/{card.images.length}
-            </div>
-            <button
-              className='product-card__slide-button'
-              type='button'
-              onClick={previousImage}
-            >
-              <img className='product-card__arrow' src={arrow} alt="arrow" />
-            </button>
-            <button
-              className='product-card__slide-button'
-              type='button'
-              onClick={nextImage}
-            >
-              <img className='product-card__arrow' src={arrow} alt="arrow" />
-            </button>
-          </>
+        {images.length >= 2 && (
+          <Carousel
+            images={images}
+            slide={slide}
+            onPrev={previousImage}
+            onNext={nextImage}
+          />
         )}
       </div>
       <div className='product-card__content'>
         <div className='product-card__info'>
-          <p className='product-card__brand'>{card.make}</p>
-          <h3 className='product-card__model'>{card.model}</h3>
+          <p className='product-card__brand'>{product.make}</p>
+          <h3 className='product-card__model'>{product.model}</h3>
         </div>
         <div className='product-card__footer'>
           <p className='product-card__price'>
-            ${card.price.toLocaleString('en-US')}
+            ${product.price.toLocaleString('en-US')}
           </p>
           <AddToCart />
         </div>

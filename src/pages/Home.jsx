@@ -35,7 +35,7 @@ function Home() {
           {categoryProducts.map((product) => (
             <ProductCard
               key={product.id}
-              card={product}
+              product={product}
             />
           ))}
         </div>
